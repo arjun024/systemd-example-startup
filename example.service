@@ -1,0 +1,26 @@
+# this file is located at /etc/systemd/system/
+[Unit]
+Description=example script that runs a shell script at boot
+After=syslog.target
+
+[Service]
+# make sure the shell script is executable (chmod +x $1)
+# and it begins with a shebang (#!/bin/bash)
+ExecStart = /path/to/startup.sh
+
+# In my example script I start a node server,
+# so i kill it here
+ExecStop = kill -INT `cat /run/node.pid`
+ExecReload = kill -TERM `cat /run/node.pid`
+
+# Incase it's stopped, restart it
+Restart = always
+
+Type = notify
+
+NotifyAccess = main
+
+PIDFile = /run/node.pid
+
+[Install]
+WantedBy=multi-user.target
