@@ -1,26 +1,33 @@
-# this file is located at /etc/systemd/system/
+# location: /etc/systemd/system/
 [Unit]
-Description=example script that runs a shell script at boot
-After=syslog.target
+Description = Example script that runs a shell script at boot
+After       = syslog.target
 
 [Service]
 # make sure the shell script is executable (chmod +x $1)
 # and it begins with a shebang (#!/bin/bash)
-ExecStart = /path/to/startup.sh
+ExecStart   = /path/to/startup.sh
 
 # In my example script I start a node server,
-# so i kill it here
-ExecStop = kill -INT `cat /run/node.pid`
-ExecReload = kill -TERM `cat /run/node.pid`
+# So tell the serive how to kill it / reload.
+ExecStop    = kill -INT `cat /run/node.pid`
+ExecReload  = kill -TERM `cat /run/node.pid`
 
-# Incase it's stopped, restart it
-Restart = always
+# In case it's stopped, restart it
+Restart     = always
 
-Type = notify
 
-NotifyAccess = main
+# With notify Type, service manager will be notified
+# when the starting up has finished
+Type        = notify
 
-PIDFile = /run/node.pid
+# Since Type is notify, notify only service updates
+# sent from the main process of the service
+NotifyAccess= main
+
+# systemd gets to read the PID of daemon's main process
+# see ExecStop and ExecReload
+PIDFile     = /run/node.pid
 
 [Install]
-WantedBy=multi-user.target
+WantedBy    = multi-user.target
