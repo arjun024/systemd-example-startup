@@ -30,4 +30,6 @@ NotifyAccess= main
 PIDFile     = /run/node.pid
 
 [Install]
+# multi-user.target corresponds to run level 3
+# roughtly meaning wanted by system start
 WantedBy    = multi-user.target
