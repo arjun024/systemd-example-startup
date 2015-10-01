@@ -3,7 +3,7 @@ example unit file to tell systemd to start a shell script at boot
 
 ## Configure
 
-Place the unit service file in `\etc\systemd\system` (or your systemd unit file
+Place the unit service file in `/etc/systemd/system` (or your systemd unit file
 search path if different) and the do the following:
 
 	systemctl enable example.service
