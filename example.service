@@ -13,7 +13,7 @@ ExecStart   = /path/to/startup.sh
 ExecStop    = kill -INT `cat /run/node.pid`
 ExecReload  = kill -TERM `cat /run/node.pid`
 
-# In case it's stopped, restart it
+# In case if it gets stopped, restart it immediately
 Restart     = always
 
 
