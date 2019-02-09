@@ -4,7 +4,7 @@ example unit file to tell systemd to start a shell script at boot
 
 # Scenario
 
-You want to do turn on an nginx or node.js server or run any arbitrary piece of code on system startup. What do you do? You write a shell script `/path/to/startup.sh` that does it all and configures systemd to do it for you. 
+You want to turn on an nginx or node.js server or run any arbitrary piece of code on system startup. What do you do? You write a shell script `/path/to/startup.sh` that does it all and configures systemd to do it for you. 
 
 
 ## Configure
